@@ -1,3 +1,4 @@
+# 실습 - 학생 클래스 프라퍼티
 class Student:
     def __init__(self, n, s):
         self.name = n;
