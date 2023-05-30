@@ -48,6 +48,23 @@ class Length:
     
     def __radd__(self, other):
         return self + other
+    
+    # - 연산 (a-b 형식)
+    def __sub__(self, other):
+        if type(other) == int:
+            x = self.value - other
+        else:
+            x = self.value - other.value * (Length.standards[other.unit] / Length.standards[self.unit])
+        return Length(x, self.unit)
+    # - 연산 (10-a 형식)
+    def __rsub__(self, other):
+        if type(other) == int:
+            x = other - self.value
+        else:
+            x = other.value - self.value * (Length.standards[self.unit] / Length.standards[other.unit])
+        return Length(x, self.unit)
+    
+    
         
 if __name__ == '__main__':
     a = Length(100, 'm')
@@ -60,15 +77,13 @@ if __name__ == '__main__':
     #수업 실습
     a.changeTo('mile')
     print('a = 100m (mile) =', a)
-    #수업 실습
     b.changeTo('m')
     print('b = 20ft (m) =', b)
-    #수업 실습
+    
     d = b + c
     print('d = b + c = ', d)
     d = b + 5
     print('d = b + 5 = ', d) 
-    #수업 실습
     d += c
     print( 'd += c = ', d )
     d += 5
@@ -76,16 +91,11 @@ if __name__ == '__main__':
     d = 2 + b
     print( 'd = 2 + b = ', d )
     
-
-
-
-
-'''
-output
-a = 100m  =  100.00 m
-b = 20 ft =  20.00 ft
-c = 50 cm =  50.00 cm
-
-a = 100m (mile) = 0.06 mile
-b = 20ft (m) = 6.10 m
-'''
+    # - 연산
+    e = b - c
+    print('e = b - c =', e)
+    e = b - 5
+    print('e = b - 5 =', e)
+    e = 10 - b
+    print('e = 8 - b =', e)
+    
