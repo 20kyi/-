@@ -82,6 +82,13 @@ class Length:
     # 과제 : * 연산 (3*b 형식)
     def __rmul__(self, other):
         return self * other
+    # 과제 : *= 연산
+    def __imul__(self, other):
+        if type(other) == int:
+            self.value *= other
+        else:
+            self.value *= other.value
+        return self
         
 if __name__ == '__main__':
     a = Length(100, 'm')
@@ -120,9 +127,9 @@ if __name__ == '__main__':
     print('e = 10 - b =', e)
     # 과제 : -= 연산
     e -= c
-    print('e -= c = ', e)
+    print('e -= c =', e)
     e -= 2
-    print('e -= 2 = ', e)
+    print('e -= 2 =', e)
     
     # 과제 : * 연산
     f = b * c
@@ -131,4 +138,8 @@ if __name__ == '__main__':
     print('f = b * 3 =', f)
     f = 3 * b
     print('f = 3 * b =', f)
-    
+    # 과제 : *= 연산
+    f *= b
+    print('f *= b =', f)
+    f *= 3
+    print('f *= 3 =' , f)
